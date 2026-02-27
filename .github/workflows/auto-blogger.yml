@@ -1,0 +1,46 @@
+name: AutoBlogger Daily Publisher
+
+on:
+  schedule:
+    - cron: '30 2 * * *' # Runs at 02:30 UTC daily (approx 8:00 AM IST)
+  workflow_dispatch: # Allows manual trigger
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run BotBlogger
+        run: python BotBlogger.py
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'latest'
+
+      - name: Deploy to Vercel
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --yes
+
+      - name: Commit Generated Articles
+        run: |
+          git config --global user.name "AutoBlogger Bot"
+          git config --global user.email "bot@autoblog.com"
+          git add posts/
+          git commit -m "AutoBlogger generated new daily article" || echo "No changes to commit"
+          git push
