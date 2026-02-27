@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Tech Weekly | The Best AI & Hardware Reviews",
   description: "Get the latest insights on Artificial Intelligence, smart home technology, and hardware. Check out our detailed reviews and recommendations.",
+  verification: {
+    google: "F06YYRP0lT4Ok6kig55p8r0MX-Ih25kR3DwunQMYv9w",
+  },
 };
 
 export default function RootLayout({
