@@ -11,6 +11,7 @@ const STITCH_TEMPLATE = `
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="google-site-verification" content="F06YYRP0lT4Ok6kig55p8r0MX-Ih25kR3DwunQMYv9w" />
     <title>AutoBlog - The Future is Now</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -138,6 +139,11 @@ app.get('/post/:slug', async (req, res) => {
     } catch (e) {
         res.status(404).send("<h1 class='text-white p-8'>Article not found</h1>");
     }
+});
+
+// Google Site Verification Route
+app.get('/googleF06YYRP0lT4Ok6kig55p8r0MX-Ih25kR3DwunQMYv9w.html', (req, res) => {
+    res.send('google-site-verification: googleF06YYRP0lT4Ok6kig55p8r0MX-Ih25kR3DwunQMYv9w.html');
 });
 
 // Vercel Serverless Export
