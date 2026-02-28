@@ -57,7 +57,7 @@ def send_telegram_notification(slug, niche, date_str):
 The Amazon link for '{niche['product']}' was successfully inserted with your tag (<i>?tag={AMAZON_AFFILIATE_ID}</i>). If someone clicks this and buys ANY item within 24 hours, the commission goes to your bank!
 
 🌐 <b>Check the live website here:</b>
-http://localhost:3000/post/{slug}
+https://auto-blog-seven.vercel.app/post/{slug}
 """
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
     payload = {
